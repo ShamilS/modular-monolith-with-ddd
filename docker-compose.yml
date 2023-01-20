@@ -15,14 +15,6 @@ services:
     depends_on:
       - migrator
     restart: on-failure
-  sqlcmd:
-    build:
-      context: ./src/Database/
-      dockerfile: Dockerfile_MssqlTools
-    networks:
-      - starfish-crm-network
-    depends_on:
-      - mymeetingsdb
   mymeetingsdb:
     image: mcr.microsoft.com/azure-sql-edge:latest
     environment:
@@ -34,7 +26,14 @@ services:
       - 1445:1433
     networks:
       - starfish-crm-network
-
+  dbcreator:
+    build:
+      context: ./src/Database/
+      dockerfile: Dockerfile_DatabaseCreator
+    networks:
+      - starfish-crm-network
+    depends_on:
+      - mymeetingsdb
   migrator:
     container_name: mymeetings_db_migrator
     build:

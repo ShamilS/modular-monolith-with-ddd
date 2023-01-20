@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "$MSSQL_SA_PASSWORD"
 echo 'Waiting for SQL server started.';
 
 sleep 20 ;
