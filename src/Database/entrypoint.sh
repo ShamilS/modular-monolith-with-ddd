@@ -1,19 +1,12 @@
 #!/bin/bash
 
-echo 'Starting sql server..' ;
+echo 'Waiting for SQL server started.';
 
-# Start SQL Server
-/opt/mssql/bin/sqlservr &
-
-echo 'SQL server started.';
-
-sleep 30 ;
+sleep 20 ;
 
 echo 'Create database..' ;
 
 # Create database
-/opt/mssql-tools/bin/sqlcmd -d master -i /scripts/CreateDatabase_Linux.sql -U sa -P Test@12345 ;
+/opt/mssql-tools/bin/sqlcmd -S mymeetingsdb -d master -i /scripts/CreateDatabase_Linux.sql -U sa -P Test@12345 ;
 
 echo 'Database created' ;
-
-tail -f /dev/null
