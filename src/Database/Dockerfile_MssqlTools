@@ -1,8 +1,0 @@
-FROM mcr.microsoft.com/mssql-tools:latest
-
-COPY ./CompanyName.MyMeetings.Database/Scripts/CreateDatabase_Linux.sql /scripts/
-
-ENV SA_PASSWORD=Test@12345
-
-ADD entrypoint.sh /
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
